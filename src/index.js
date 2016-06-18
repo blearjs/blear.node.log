@@ -5,8 +5,6 @@
  */
 
 
-
-
 'use strict';
 
 var util = require('util');
@@ -23,32 +21,12 @@ var system = require('blear.node.system');
 var console = require('blear.node.console');
 
 
-// ==========================================
-// ===============[ express ]================
-// ==========================================
-/**
- * express 日志系统，尽可能的放在中间件的最开始
- * @returns {Function}
- * @private
- */
-exports.expressMiddlewareStart = function (options) {
-    options = object.assign({}, options);
-
-    return function (req, res, next) {
-        var fullURL = req.protocol + '://' + req.headers.host + req.url;
-
-        console.info(console.colors.magenta(req.method, fullURL));
-        next();
-    };
-};
-
-
 /**
  * express 日志系统，尽可能的放在中间件的末尾
  * @returns {Function}
  * @private
  */
-exports.expressMiddlewareEnd = function (options) {
+exports.expressMiddleware = function (options) {
     options = object.assign({
         inject: {}
     }, options);
@@ -60,6 +38,10 @@ exports.expressMiddlewareEnd = function (options) {
                     err[key] = val(req, res);
                 } else {
                     err[key] = val;
+                }
+
+                if (err[key] === undefined) {
+                    delete err[key];
                 }
             });
 

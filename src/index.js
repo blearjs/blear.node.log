@@ -23,43 +23,22 @@ var system = require('blear.node.system');
 var console = require('blear.node.console');
 
 
-var pkg = require('../package.json');
-
-
 // ==========================================
 // ===============[ express ]================
 // ==========================================
-var namespace = path.basename(__filename) + ' of ' + pkg.name + '@' + pkg.version;
-
-
 /**
  * express 日志系统，尽可能的放在中间件的最开始
  * @returns {Function}
  * @private
  */
 exports.expressMiddlewareStart = function (options) {
-    var ipKey = namespace + 'ip';
     options = object.assign({}, options);
 
     return function (req, res, next) {
-        req.$fullURL = req.protocol + '://' + req.headers.host + req.url;
+        var fullURL = req.protocol + '://' + req.headers.host + req.url;
 
-        var log = function (ip) {
-            req.$ip = ip;
-            console.info(console.colors.magenta(ip, req.method, req.$fullURL));
-        };
-
-        if (req.session[ipKey]) {
-            log(req.session[ipKey]);
-            next();
-            return;
-        }
-
-        system.remoteIP(req, function (ip) {
-            req.session[ipKey] = req.$ip = ip;
-            log(ip);
-            next();
-        });
+        console.info(console.colors.magenta(req.method, fullURL));
+        next();
     };
 };
 

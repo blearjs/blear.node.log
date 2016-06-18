@@ -1,7 +1,7 @@
 {
   "name": "blear.node.log",
-  "version": "1.0.0",
-  "description": "Node 日期管理",
+  "version": "1.0.1",
+  "description": "Node 日志管理",
   "scripts": {
     "live": "browser-sync start --config bs-config.js",
     "test-travis": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --report lcovonly",

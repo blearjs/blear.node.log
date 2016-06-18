@@ -55,30 +55,6 @@ exports.expressMiddlewareEnd = function (options) {
 
     return function (err, req, res, next) {
         if (err && err instanceof Error) {
-            err['request url'] = req.$fullURL;
-            err['request ip'] = req.$ip;
-            err['request headers'] = req.headers;
-
-            if (req.query) {
-                err['request query'] = req.query;
-            }
-
-            if (req.body) {
-                err['request body'] = req.body;
-            }
-
-            if (req.file) {
-                err['request file'] = req.file;
-            }
-
-            if (req.files) {
-                err['request files'] = req.files;
-            }
-
-            if (req.session) {
-                err['request session'] = req.session;
-            }
-
             object.each(options.inject, function (key, val) {
                 if (typeis.Function(val)) {
                     err[key] = val(req, res);

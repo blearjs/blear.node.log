@@ -27,7 +27,7 @@ var console = require('blear.node.console');
  * @private
  */
 exports.expressMiddleware = function (options) {
-    options = object.assign({
+    options = object.assign(true, {
         inject: {
             'request IP': function (req) {
                 return req.ip;

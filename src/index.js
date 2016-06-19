@@ -114,7 +114,11 @@ exports.manage = function (options) {
         array.each(list, function (index, item) {
             var srcPath = path.join(options.dirname, item.src);
             var complete = function () {
-                fse.writeFile(srcPath, '', 'utf8', exports.holdError);
+                try {
+                    fse.writeFileSync(srcPath, '', 'utf8');
+                } catch (err) {
+                    // ignore
+                }
             };
             var src = fse.createReadStream(srcPath);
             var today = new Date();

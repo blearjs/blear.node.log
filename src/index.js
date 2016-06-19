@@ -29,6 +29,9 @@ var console = require('blear.node.console');
 exports.expressMiddleware = function (options) {
     options = object.assign(true, {
         inject: {
+            'request time': function () {
+                return date.format('YYYY-MM-DD HH:mm:ss.SSS');
+            },
             'request IP': function (req) {
                 return req.ip;
             },
@@ -37,6 +40,15 @@ exports.expressMiddleware = function (options) {
             },
             'request headers': function (req) {
                 return req.headers;
+            },
+            'request session': function (req) {
+                return req.session;
+            },
+            'request query': function (req) {
+                return req.query;
+            },
+            'request body': function (req) {
+                return req.body;
             }
         }
     }, options);

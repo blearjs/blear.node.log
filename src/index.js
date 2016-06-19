@@ -112,10 +112,11 @@ exports.manage = function (options) {
     later.setInterval(function () {
         // 传输日志
         array.each(list, function (index, item) {
+            var srcPath = path.join(options.dirname, item.src);
             var complete = function () {
-                fse.writeFile(item.src, '', 'utf8', exports.holdError);
+                fse.writeFile(srcPath, '', 'utf8', exports.holdError);
             };
-            var src = fse.createReadStream(path.join(options.dirname, item.src));
+            var src = fse.createReadStream(srcPath);
             var today = new Date();
             var yestoday = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 1);
             var name = item.dest + date.format(STR_FORMAT, yestoday) + '.log';

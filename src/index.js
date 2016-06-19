@@ -28,7 +28,17 @@ var console = require('blear.node.console');
  */
 exports.expressMiddleware = function (options) {
     options = object.assign({
-        inject: {}
+        inject: {
+            'request IP': function (req) {
+                return req.ip;
+            },
+            'request URL': function (req) {
+                return req.method + ' ' + req.protocol + '://' + req.headers.host + req.url;
+            },
+            'request headers': function (req) {
+                return req.headers;
+            }
+        }
     }, options);
 
     return function (err, req, res, next) {

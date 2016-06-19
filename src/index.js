@@ -36,7 +36,7 @@ exports.expressMiddleware = function (options) {
                 return req.ip;
             },
             'request URL': function (req) {
-                return req.method + ' ' + req.protocol + '://' + req.headers.host + req.url;
+                return req.method + ' ' + req.protocol + '://' + req.headers.host + req.originalUrl;
             },
             'request headers': function (req) {
                 return req.headers;

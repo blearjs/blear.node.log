@@ -1,6 +1,6 @@
 {
   "name": "blear.node.log",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Node 日志管理",
   "scripts": {
     "live": "browser-sync start --config bs-config.js",
@@ -38,20 +38,16 @@
     "url": "https://github.com/blearjs/blear.node.log/issues"
   },
   "dependencies": {
-    "blear.node.console": "^1.0.3",
-    "blear.node.system": "^1.0.0",
-    "blear.polyfills.array": "^1.0.4",
-    "blear.polyfills.date": "^1.0.1",
-    "blear.polyfills.object": "^1.0.1",
-    "blear.polyfills.string": "^1.0.1",
-    "blear.utils.access": "^1.0.2",
-    "blear.utils.array": "^1.0.6",
-    "blear.utils.collection": "^1.0.3",
-    "blear.utils.date": "^1.0.2",
-    "blear.utils.number": "^1.0.1",
-    "blear.utils.object": "^1.0.2",
-    "blear.utils.string": "^1.0.3",
-    "blear.utils.typeis": "^1.0.2",
+    "blear.node.console": "1.x",
+    "blear.node.system": "1.x",
+    "blear.utils.access": "1.x",
+    "blear.utils.array": "1.x",
+    "blear.utils.collection": "1.x",
+    "blear.utils.date": "1.x",
+    "blear.utils.number": "1.x",
+    "blear.utils.object": "1.x",
+    "blear.utils.string": "1.x",
+    "blear.utils.typeis": "1.x",
     "fs-extra": "^0.30.0",
     "glob": "^7.0.4",
     "later": "^1.2.0"
